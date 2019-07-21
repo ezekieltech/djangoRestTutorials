@@ -13,9 +13,17 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.contrib import admin
-from django.urls import path
+#from django.contrib import admin
+from django.urls import path, include
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    #path('admin/', admin.site.urls),
+    path('', include('snippets.urls')),
 ]
+
+'''
+It's worth noting that there are a couple of edge cases we're not dealing with
+properly at the moment. If we send malformed json, or if a request is made with
+a method that the view doesn't handle, then we'll end up with a 500
+"server error" response. Still, this'll do for now.
+'''
